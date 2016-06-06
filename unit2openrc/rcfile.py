@@ -204,19 +204,6 @@ class RCFile(ServiceConfig):
 				Command(EEND, "1").indent(),
 			"fi"
 		)
-		"""
-		rv = []
-		rv.append(Command.split("if [ $? -eq 0 ] ; then"))
-		for o in options:
-			rv.append(Command.split(o).extend("||", "return", "1").indent())
-		rv.extend(Command.multiple(
-			   Command(EEND, "0").indent(),
-			"else",
-			   Command(EEND, "1").indent(),
-			"fi"
-		))
-		return rv
-		"""
 	
 	
 	@staticmethod
@@ -235,6 +222,7 @@ class RCFile(ServiceConfig):
 		""" Returns v if v is list; returns [v] otherwise """
 		if type(v) == list: return v
 		return [v]
+	
 	
 	@staticmethod
 	def convert_requirement(r):
