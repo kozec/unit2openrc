@@ -10,6 +10,11 @@ from __future__ import unicode_literals
 INIT_D = "/etc/init.d"
 RUN_D = "/run"
 DAEMON_DIR = "/usr/bin"		# Directory where daemon executables are stored (currently not used in any meaningfull way)
+UNIT_DIRS = [				# Directories where systemd units are placed, in order of precedence.
+	'/etc/systemd/system',
+	'/run/systemd/system',
+	'/usr/lib/systemd/system',
+]
 
 # Settings
 ALLOW_DBUS = True			# If set to True, it is possible to convert 'dbus' service type.
