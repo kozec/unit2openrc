@@ -10,7 +10,8 @@ from __future__ import unicode_literals
 INIT_D = "/etc/init.d"
 RUN_D = "/run"
 DAEMON_DIR = "/usr/bin"		# Directory where daemon executables are stored (currently not used in any meaningfull way)
-UNIT_DIRS = [				# Directories where systemd units are placed, in order of precedence.
+UNIT_DIRS = [
+	# Directories where systemd units are placed, in order of precedence.
 	'/etc/systemd/system',
 	'/run/systemd/system',
 	'/usr/lib/systemd/system',
@@ -19,7 +20,32 @@ UNIT_DIRS = [				# Directories where systemd units are placed, in order of prece
 # Settings
 ALLOW_DBUS = True			# If set to True, it is possible to convert 'dbus' service type.
 							# Requires dbus-service-wait executable to be available.
-
+AUTO_IGNORED = [
+	# In auto-generate mode (unit2openrc -a), services with names containing
+	# any string from this list are ignored
+	'@', 'systemd-', 'dbus-org', 'plymouth',
+]
+AUTO_IGNORED_EXACT = [
+	# In auto-generate mode (unit2openrc -a), services with these exact
+	# filenames are ignored
+	'autovt@.service',
+	'console-getty.service',
+	'console-shell.service',
+	'container-getty@.service',
+	'debug-shell.service',
+	'emergency.service',
+	'getty@.service',
+	'initrd-cleanup.service',
+	'initrd-parse-etc.service',
+	'initrd-switch-root.service',
+	'initrd-udevadm-cleanup-db.service',
+	'kmod-static-nodes.service',
+	'ldconfig.service',
+	'quotaon.service',
+	'rescue.service',
+	'serial-getty@.service',
+	'debug-shell.service'
+]
 
 # Executables and rc file commands
 START_STOP_DAEMON = "start-stop-daemon"

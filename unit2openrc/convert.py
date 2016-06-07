@@ -34,12 +34,13 @@ def _unit2openrc(unit, rc):
 		rc.pidfile = unit.pidfile
 	# Convert environment
 	if 'environment' in unit:
-		for v in shlex.split(unit.environment):
-			if "=" in v:
-				k, v = v.split("=", 1)
-				rc.env[k] = v
-			else:
-				print >>sys.stderr, "Warning: Invalid environment var definition:", v
+		for x in ensure_list(unit.environment):
+			for v in shlex.split(x):
+				if "=" in v:
+					k, v = v.split("=", 1)
+					rc.env[k] = v
+				else:
+					print >>sys.stderr, "Warning: Invalid environment var definition:", v
 	
 	# Convert deps
 	if 'requires' in unit:

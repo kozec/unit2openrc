@@ -56,7 +56,7 @@ class RCFile(ServiceConfig):
 			val = self.env[v]
 			if " " in val:
 				val = '"%s"' % (val.encode('unicode_escape').replace('"', '\\"'),)
-			o.write("%s=%s\n" % (v, val))
+			o.write("export %s=%s\n" % (v, val))
 		o.write("pidfile=%s\n" % (self.pidfile))
 		o.write("\n")
 		
